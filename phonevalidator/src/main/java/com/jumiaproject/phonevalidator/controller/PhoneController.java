@@ -25,7 +25,6 @@ public class PhoneController {
 
     @GetMapping()
     public ResponseEntity<List<CustomerEntity>> getPhoneList(){
-        var returnValue = customerService.findAll();
-        return ResponseEntity.ok(returnValue);
+        return ResponseEntity.ok(customerService.findAll());
     }
 }
