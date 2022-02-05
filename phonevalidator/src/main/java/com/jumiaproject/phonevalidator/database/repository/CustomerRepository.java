@@ -2,7 +2,6 @@ package com.jumiaproject.phonevalidator.database.repository;
 
 import com.jumiaproject.phonevalidator.database.entity.CustomerEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
