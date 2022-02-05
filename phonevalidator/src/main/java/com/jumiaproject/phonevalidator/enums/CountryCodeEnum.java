@@ -1,7 +1,5 @@
 package com.jumiaproject.phonevalidator.enums;
 
-import com.fasterxml.jackson.annotation.JsonValue;
-
 import java.util.Arrays;
 import java.util.Optional;
 
@@ -28,13 +26,5 @@ public enum CountryCodeEnum {
         return Arrays.stream(values())
                 .filter(CountryCodeEnum -> CountryCodeEnum.numValue == value)
         .findFirst();
-    }
-
-    public static CountryCodeEnum fromString(String text) {
-        try {
-            return CountryCodeEnum.valueOf(text);
-        } catch (Exception e) {
-            return null;
-        }
     }
 }

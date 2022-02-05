@@ -67,7 +67,11 @@ public class PhoneController {
                     .build();
         } else {controllerParams = null;}
 
-
-        return ResponseEntity.ok(useCase.getAllPhonesValidated(controllerParams));
+        try {
+            return ResponseEntity.ok(useCase.getAllPhonesValidated(controllerParams));
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError()
+                    .build();
+        }
     }
 }

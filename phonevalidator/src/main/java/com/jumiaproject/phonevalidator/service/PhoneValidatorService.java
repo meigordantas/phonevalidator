@@ -7,16 +7,21 @@ import com.jumiaproject.phonevalidator.enums.CountryCodeEnum;
 import com.jumiaproject.phonevalidator.enums.ValidationStateEnum;
 import com.jumiaproject.phonevalidator.utils.PhoneNumberUtils;
 import com.jumiaproject.phonevalidator.validator.PhoneValidatorFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class PhoneValidatorService {
+
+    @Autowired
+    Logger logger;
 
     @Autowired
     private CustomerService customerService;
@@ -25,24 +30,30 @@ public class PhoneValidatorService {
     private PhoneValidatorFactory validatorFactory;
 
     public List<PhoneResponseDto> getAllPhonesValidated(PhoneControllerParamsDto controllerParams) {
-        var allCustomers = customerService.findAll();
 
-        List<PhoneResponseDto> returnList = new ArrayList<PhoneResponseDto>();
+        try {
+            var allCustomers = customerService.findAll();
 
-        var phoneList = allCustomers.stream()
-                .map(this::getResponseDto)
-                .collect(Collectors.toList());
+            List<PhoneResponseDto> returnList = new ArrayList<PhoneResponseDto>();
 
-        if(controllerParams != null) {
-            returnList = phoneList.stream().filter(p -> p.getPhoneCountry().equals(controllerParams.getCountry()))
+            var phoneList = allCustomers.stream()
+                    .map(this::getResponseDto)
                     .collect(Collectors.toList());
 
-            returnList =
-                    returnList.stream().filter(p -> p.getValidationStateEnum().equals(controllerParams.getValidationState()))
-                    .collect(Collectors.toList());
+            if (controllerParams != null) {
+                returnList = phoneList.stream().filter(p -> p.getPhoneCountry().equals(controllerParams.getCountry()))
+                        .collect(Collectors.toList());
+
+                returnList =
+                        returnList.stream().filter(p -> p.getValidationStateEnum().equals(controllerParams.getValidationState()))
+                                .collect(Collectors.toList());
+            }
+
+            return returnList;
+        } catch (Exception e) {
+            log.error("class=PhonValidatorService, method=getAllPhonesValidated");
+            throw  e;
         }
-
-        return returnList;
 
     }
 
