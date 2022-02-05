@@ -2,7 +2,7 @@ package com.jumiaproject.phonevalidator.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.jumiaproject.phonevalidator.enums.CountryCodeEnum;
-import com.jumiaproject.phonevalidator.enums.ValidationState;
+import com.jumiaproject.phonevalidator.enums.ValidationStateEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,7 +21,7 @@ public class PhoneResponseDto {
     private String countryCode;
 
     @JsonProperty("phone_validation_state")
-    private ValidationState validationState;
+    private ValidationStateEnum validationStateEnum;
 
     @JsonProperty("phone_number_country")
     private CountryCodeEnum phoneCountry;

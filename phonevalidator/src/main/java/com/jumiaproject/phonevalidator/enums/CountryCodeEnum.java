@@ -29,4 +29,12 @@ public enum CountryCodeEnum {
                 .filter(CountryCodeEnum -> CountryCodeEnum.numValue == value)
         .findFirst();
     }
+
+    public static CountryCodeEnum fromString(String text) {
+        try {
+            return CountryCodeEnum.valueOf(text);
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }

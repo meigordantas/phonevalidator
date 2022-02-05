@@ -3,8 +3,6 @@ package com.jumiaproject.phonevalidator.controller;
 import com.jumiaproject.phonevalidator.database.entity.CustomerEntity;
 import com.jumiaproject.phonevalidator.dto.PhoneControllerParamsDto;
 import com.jumiaproject.phonevalidator.dto.PhoneResponseDto;
-import com.jumiaproject.phonevalidator.enums.CountryCodeEnum;
-import com.jumiaproject.phonevalidator.enums.ValidationState;
 import com.jumiaproject.phonevalidator.service.CustomerService;
 import com.jumiaproject.phonevalidator.service.PhoneValidatorService;
 import io.swagger.annotations.ApiOperation;
@@ -52,13 +50,13 @@ public class PhoneController {
                     value = "Phone number validation state",
                     example = "VALID, INVALID"
             )
-            @RequestParam(value = "validation-state") final ValidationState validationState,
+            @RequestParam(value = "validation-state", required = false) final String validationState,
             @ApiParam(
                     name = "country",
                     value = "Phone number country",
                     example = "MOZAMBIQUE"
             )
-            @RequestParam(value = "country") final CountryCodeEnum country
+            @RequestParam(value = "country", required = false) final String country
             )
     {
         PhoneControllerParamsDto controllerParams;

@@ -1,8 +1,8 @@
 package com.jumiaproject.phonevalidator.validator;
 
-import com.jumiaproject.phonevalidator.enums.ValidationState;
+import com.jumiaproject.phonevalidator.enums.ValidationStateEnum;
 
 public interface PhoneValidatorStrategy {
 
-    ValidationState validate(String phoneNumber);
+    ValidationStateEnum validate(String phoneNumber);
 }

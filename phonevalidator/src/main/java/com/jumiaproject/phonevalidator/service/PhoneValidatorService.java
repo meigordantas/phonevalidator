@@ -4,7 +4,7 @@ import com.jumiaproject.phonevalidator.database.entity.CustomerEntity;
 import com.jumiaproject.phonevalidator.dto.PhoneControllerParamsDto;
 import com.jumiaproject.phonevalidator.dto.PhoneResponseDto;
 import com.jumiaproject.phonevalidator.enums.CountryCodeEnum;
-import com.jumiaproject.phonevalidator.enums.ValidationState;
+import com.jumiaproject.phonevalidator.enums.ValidationStateEnum;
 import com.jumiaproject.phonevalidator.utils.PhoneNumberUtils;
 import com.jumiaproject.phonevalidator.validator.PhoneValidatorFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,11 +36,11 @@ public class PhoneValidatorService {
 
         if(controllerParams != null) {
             returnList = controllerParams.getCountry() != null ?
-                    phoneList.stream().filter(p -> p.getPhoneCountry().equals(controllerParams.getCountry()))
+                    phoneList.stream().filter(p -> p.getPhoneCountry().equals(CountryCodeEnum.fromString(controllerParams.getCountry())))
                     .collect(Collectors.toList()) : phoneList;
 
             returnList = controllerParams.getValidationState() != null ?
-                    returnList.stream().filter(p -> p.getValidationState().equals(controllerParams.getValidationState()))
+                    returnList.stream().filter(p -> p.getValidationStateEnum().equals(ValidationStateEnum.fromString(controllerParams.getValidationState())))
                     .collect(Collectors.toList()) : returnList;
         }
 
@@ -48,7 +48,7 @@ public class PhoneValidatorService {
 
     }
 
-    private ValidationState validatePhoneNumber(CustomerEntity customer) {
+    private ValidationStateEnum validatePhoneNumber(CustomerEntity customer) {
         var customerPhoneNumber = customer.getCustomerPhone();
         var validatorClass = this.validatorFactory.create(customerPhoneNumber);
 
@@ -59,7 +59,7 @@ public class PhoneValidatorService {
         var phoneNumber = customer.getCustomerPhone();
         return PhoneResponseDto.builder()
                 .phoneNumber(phoneNumber)
-                .validationState(validatePhoneNumber(customer))
+                .validationStateEnum(validatePhoneNumber(customer))
                 .phoneCountry(CountryCodeEnum.valueOf(PhoneNumberUtils.getCountryCodeAsInteger(phoneNumber))
                 .orElse(CountryCodeEnum.UNKNOWN))
                 .countryCode(PhoneNumberUtils.getCountryCodeAsString(phoneNumber))
