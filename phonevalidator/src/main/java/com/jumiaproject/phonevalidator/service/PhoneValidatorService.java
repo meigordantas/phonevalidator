@@ -35,13 +35,12 @@ public class PhoneValidatorService {
                 .collect(Collectors.toList());
 
         if(controllerParams != null) {
-            returnList = controllerParams.getCountry() != null ?
-                    phoneList.stream().filter(p -> p.getPhoneCountry().equals(CountryCodeEnum.fromString(controllerParams.getCountry())))
-                    .collect(Collectors.toList()) : phoneList;
+            returnList = phoneList.stream().filter(p -> p.getPhoneCountry().equals(controllerParams.getCountry()))
+                    .collect(Collectors.toList());
 
-            returnList = controllerParams.getValidationState() != null ?
-                    returnList.stream().filter(p -> p.getValidationStateEnum().equals(ValidationStateEnum.fromString(controllerParams.getValidationState())))
-                    .collect(Collectors.toList()) : returnList;
+            returnList =
+                    returnList.stream().filter(p -> p.getValidationStateEnum().equals(controllerParams.getValidationState()))
+                    .collect(Collectors.toList());
         }
 
         return returnList;

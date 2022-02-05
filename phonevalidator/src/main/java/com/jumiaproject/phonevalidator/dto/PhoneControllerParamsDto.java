@@ -1,5 +1,7 @@
 package com.jumiaproject.phonevalidator.dto;
 
+import com.jumiaproject.phonevalidator.enums.CountryCodeEnum;
+import com.jumiaproject.phonevalidator.enums.ValidationStateEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,6 +13,6 @@ import lombok.NoArgsConstructor;
 @Data
 public class PhoneControllerParamsDto {
 
-    String country;
-    String validationState;
+    CountryCodeEnum country;
+    ValidationStateEnum validationState;
 }
