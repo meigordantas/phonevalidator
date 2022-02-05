@@ -29,10 +29,4 @@ public enum CountryCodeEnum {
                 .filter(CountryCodeEnum -> CountryCodeEnum.numValue == value)
         .findFirst();
     }
-
-    @JsonValue
-    public String getKey() {
-        var returnValue = this.toString();
-        return returnValue.substring(0,1) + returnValue.substring(1).toLowerCase();
-    }
 }

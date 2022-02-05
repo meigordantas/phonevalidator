@@ -1,6 +1,6 @@
 package com.jumiaproject.phonevalidator.validator.validators;
 
-import com.jumiaproject.phonevalidator.enums.PhoneState;
+import com.jumiaproject.phonevalidator.enums.ValidationState;
 import com.jumiaproject.phonevalidator.validator.PhoneValidatorStrategy;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,11 +14,11 @@ public class MozambiquePhoneValidatorStrategy implements PhoneValidatorStrategy 
     private String regex;
 
     @Override
-    public PhoneState validate(String phoneNumber) {
+    public ValidationState validate(String phoneNumber) {
         if (phoneNumber.matches(regex)) {
-            return PhoneState.VALID;
+            return ValidationState.VALID;
         } else {
-            return PhoneState.INVALID;
+            return ValidationState.INVALID;
         }
     }
 }
