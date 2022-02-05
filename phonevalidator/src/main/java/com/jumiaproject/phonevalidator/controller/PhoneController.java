@@ -35,20 +35,11 @@ public class PhoneController {
     @Autowired
     private CustomerService customerService;
 
-    @GetMapping()
-    @ApiOperation(
-            value = "Get all customers"
-    )
-    public ResponseEntity<List<CustomerEntity>> getPhoneList(){
-        return ResponseEntity.ok(customerService.findAll());
-    }
-
     @GetMapping("phones")
     @ApiOperation(
             value = "Get all phone numbers with validation status"
     )
     @Validated
-
     public ResponseEntity<List<PhoneResponseDto>> getAllPhonesValidated(
             @ApiParam(
                     name = "validation-state",

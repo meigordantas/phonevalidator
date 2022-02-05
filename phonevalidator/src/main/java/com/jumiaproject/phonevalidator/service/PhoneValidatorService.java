@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,8 +26,6 @@ public class PhoneValidatorService {
 
     public List<PhoneResponseDto> getAllPhonesValidated(PhoneControllerParamsDto controllerParams) {
         var allCustomers = customerService.findAll();
-
-        var firstPhone = allCustomers.stream().findFirst().get();
 
         List<PhoneResponseDto> returnList = new ArrayList<PhoneResponseDto>();
 
