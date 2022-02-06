@@ -1,4 +1,4 @@
-package com.jumiaproject.phonevalidator.testclasses;
+package com.jumiaproject.phonevalidator.controller;
 
 import com.jumiaproject.phonevalidator.dto.PhoneControllerParamsDto;
 import com.jumiaproject.phonevalidator.enums.CountryCodeEnum;

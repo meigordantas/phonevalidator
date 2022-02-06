@@ -1,4 +1,4 @@
-package com.jumiaproject.phonevalidator.testclasses;
+package com.jumiaproject.phonevalidator.controller;
 
 import com.jumiaproject.phonevalidator.enums.ValidationStateEnum;
 import com.jumiaproject.phonevalidator.validator.PhoneValidatorFactory;

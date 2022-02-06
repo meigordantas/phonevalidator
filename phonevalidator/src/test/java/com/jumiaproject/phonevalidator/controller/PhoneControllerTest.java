@@ -1,4 +1,4 @@
-package com.jumiaproject.phonevalidator.testclasses;
+package com.jumiaproject.phonevalidator.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jumiaproject.phonevalidator.dto.PhoneValidatorResponseDto;
