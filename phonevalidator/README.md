@@ -2,7 +2,7 @@
 Phone validator backend project for interview assignment
 
 # Booting up the project
-## !!This project uses java 11!!
+## This project uses java 11
 
 1. Go to the root directory and run mvnw clean package (it should generate a file named "phonevalidator.jar" inside ./target/)
 2. **If you are running docker**, just build the image using command `docker build --tag=phonevalidator .` and run the docker container using `docker run -p8080:8080`.
