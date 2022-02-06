@@ -1,8 +1,7 @@
-package com.jumiaproject.phonevalidator.controller;
+package com.jumiaproject.phonevalidator.testclasses;
 
-import com.jumiaproject.phonevalidator.database.entity.CustomerEntity;
 import com.jumiaproject.phonevalidator.dto.PhoneControllerParamsDto;
-import com.jumiaproject.phonevalidator.dto.PhoneResponseDto;
+import com.jumiaproject.phonevalidator.dto.PhoneValidatorResponseDto;
 import com.jumiaproject.phonevalidator.enums.CountryCodeEnum;
 import com.jumiaproject.phonevalidator.enums.ValidationStateEnum;
 import com.jumiaproject.phonevalidator.service.CustomerService;
@@ -19,8 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/phone")
 
@@ -30,7 +27,7 @@ import java.util.List;
 public class PhoneController {
 
     @Autowired
-    private PhoneValidatorService useCase;
+    private PhoneValidatorService phoneValidatorService;
 
     @Autowired
     private CustomerService customerService;
@@ -40,7 +37,7 @@ public class PhoneController {
             value = "Get all phone numbers with validation status"
     )
     @Validated
-    public ResponseEntity<List<PhoneResponseDto>> getAllPhonesValidated(
+    public ResponseEntity<PhoneValidatorResponseDto> getAllPhonesValidated(
             @ApiParam(
                     name = "validation-state",
                     value = "Phone number validation state",
@@ -68,10 +65,15 @@ public class PhoneController {
         } else {controllerParams = null;}
 
         try {
-            return ResponseEntity.ok(useCase.getAllPhonesValidated(controllerParams));
+            PhoneValidatorResponseDto response = new PhoneValidatorResponseDto(
+                    phoneValidatorService.getAllPhonesValidated(controllerParams)
+            );
+
+            return ResponseEntity.ok(response);
         } catch (Exception e) {
-            return ResponseEntity.internalServerError()
-                    .build();
+            throw e;
+//            return ResponseEntity.internalServerError()
+//                    .build();
         }
     }
 }

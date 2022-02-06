@@ -13,15 +13,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-@Service
 @Slf4j
+@Service
 public class PhoneValidatorService {
-
-    @Autowired
-    Logger logger;
 
     @Autowired
     private CustomerService customerService;
@@ -41,12 +37,13 @@ public class PhoneValidatorService {
                     .collect(Collectors.toList());
 
             if (controllerParams != null) {
-                returnList = phoneList.stream().filter(p -> p.getPhoneCountry().equals(controllerParams.getCountry()))
-                        .collect(Collectors.toList());
+                returnList = controllerParams.getCountry() != null ? phoneList.stream().filter(
+                        p -> p.getPhoneCountry().equals(controllerParams.getCountry()))
+                        .collect(Collectors.toList()) : phoneList;
 
-                returnList =
-                        returnList.stream().filter(p -> p.getValidationStateEnum().equals(controllerParams.getValidationState()))
-                                .collect(Collectors.toList());
+                returnList = controllerParams.getValidationState() != null ?  returnList.stream().filter(
+                        p -> p.getValidationStateEnum().equals(controllerParams.getValidationState()))
+                                .collect(Collectors.toList()) : returnList;
             }
 
             return returnList;
