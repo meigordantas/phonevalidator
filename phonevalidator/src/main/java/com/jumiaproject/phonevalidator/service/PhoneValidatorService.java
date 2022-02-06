@@ -69,6 +69,7 @@ public class PhoneValidatorService {
                 .phoneCountry(CountryCodeEnum.valueOf(PhoneNumberUtils.getCountryCodeAsInteger(phoneNumber))
                 .orElse(CountryCodeEnum.UNKNOWN))
                 .countryCode(PhoneNumberUtils.getCountryCodeAsString(phoneNumber))
+                .customerName(customer.getCustomerName())
                 .build();
     }
 }

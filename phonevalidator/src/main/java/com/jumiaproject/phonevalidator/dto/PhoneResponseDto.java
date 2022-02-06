@@ -14,6 +14,9 @@ import lombok.NoArgsConstructor;
 @Builder
 public class PhoneResponseDto {
 
+    @JsonProperty("customer_name")
+    private String customerName;
+
     @JsonProperty("customer_phone_number")
     private String phoneNumber;
 
