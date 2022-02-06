@@ -1,7 +1,6 @@
 package com.jumiaproject.phonevalidator.testclasses;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jumiaproject.phonevalidator.dto.PhoneResponseDto;
 import com.jumiaproject.phonevalidator.dto.PhoneValidatorResponseDto;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
@@ -12,7 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;

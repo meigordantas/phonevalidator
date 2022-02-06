@@ -192,17 +192,4 @@ public class PhoneValidatorServiceTest {
                         .collect(Collectors.toList()).size(), phoneList.size()
         );
     }
-
-    @Test
-    public void shouldReturnEmptyWhenCountryNotExists() {
-        var controllerParams = PhoneControllerParamsDto.builder()
-                .validationState(ValidationStateEnum.INVALID)
-                .country(CountryCodeEnum.valueOf("NOT_A_VALID_COUNTRY"))
-                .build();
-
-        var phoneList = validatorService.getAllPhonesValidated(controllerParams);
-
-        Assert.assertTrue(phoneList.isEmpty());
-    }
-
 }
